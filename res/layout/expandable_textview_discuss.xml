@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.expandabletextviewinlistview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res/cn.jaxus.course"
+    android:id="@+id/expand_text_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clickable="false"
+    expandableTextView:clickListenerType="all"
+    expandableTextView:collapseDrawable="@drawable/ic_collapse_large_holo_light"
+    expandableTextView:expandDrawable="@drawable/ic_expand_large_holo_light"
+    expandableTextView:maxCollapsedLines="4" >
+
+    <TextView
+        android:id="@id/expandable_text"
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@id/expand_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageButton
+            android:id="@id/expand_collapse"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:clickable="false" />
+    </RelativeLayout>
+
+</com.example.expandabletextviewinlistview.ExpandableTextView>
