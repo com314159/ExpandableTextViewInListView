@@ -114,7 +114,9 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         }
 
         mCollapsed = !mCollapsed;
-        mConvertTextCollapsedStatus.put(mPosition, mCollapsed);
+        if (mConvertTextCollapsedStatus != null) {
+        	mConvertTextCollapsedStatus.put(mPosition, mCollapsed);
+        }
         Log.i(TAG, " put postion " + mPosition + " " + mCollapsed + " this " + this);
 
         mButton.setImageDrawable(mCollapsed ? mExpandDrawable : mCollapseDrawable);
