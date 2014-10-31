@@ -10,7 +10,7 @@
     expandableTextView:clickListenerType="all"
     expandableTextView:collapseDrawable="@drawable/ic_collapse_large_holo_light"
     expandableTextView:expandDrawable="@drawable/ic_expand_large_holo_light"
-    expandableTextView:maxCollapsedLines="4" >
+    expandableTextView:maxCollapsedLines="2" >
 
     <TextView
         android:id="@id/expandable_text"

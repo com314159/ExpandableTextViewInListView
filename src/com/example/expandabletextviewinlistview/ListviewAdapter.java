@@ -1,6 +1,7 @@
 package com.example.expandabletextviewinlistview;
 
 import android.content.Context;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ public class ListviewAdapter extends BaseAdapter{
 	private static final String TAG = ListviewAdapter.class.getSimpleName();
 
 	private Context mContext;
+	private SparseBooleanArray mConvertTextCollapsedStatus = new SparseBooleanArray();
 	
 	private String[] stringArray;
 	public ListviewAdapter(Context context) {
@@ -52,7 +54,7 @@ public class ListviewAdapter extends BaseAdapter{
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 
-		viewHolder.mExpandableTextView.setConvertText(position, stringArray[position]);
+		viewHolder.mExpandableTextView.setConvertText(mConvertTextCollapsedStatus,position, stringArray[position]);
 		return convertView;
 	}
 	

@@ -23,10 +23,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v4.util.SparseArrayCompat;
 import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -87,7 +87,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     public static final int ClickFooter = 1;
     
     // when in listview , use this map to save collapsed status
-    private SparseArrayCompat<Boolean> mConvertTextCollapsedStatus = new SparseArrayCompat<Boolean>();
+    private SparseBooleanArray mConvertTextCollapsedStatus;
     private int mPosition;
     
     private int mClickType;
@@ -115,12 +115,13 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
         mCollapsed = !mCollapsed;
         mConvertTextCollapsedStatus.put(mPosition, mCollapsed);
+        Log.i(TAG, " put postion " + mPosition + " " + mCollapsed + " this " + this);
 
         mButton.setImageDrawable(mCollapsed ? mExpandDrawable : mCollapseDrawable);
 
         Animation animation;
         
-
+        Log.i(TAG, "click on position " + mPosition + " collapsed " + mCollapsed);
 
         if (mCollapsed) {
             animation = new ExpandCollapseAnimation(this, getHeight(), mCollapsedHeight);
@@ -133,7 +134,6 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-//                applyAlphaAnimation(mTv, mAnimAlphaStart);
             }
             @Override
             public void onAnimationEnd(Animation animation) { }
@@ -155,9 +155,6 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         }
         mRelayout = false;
 
-        // Setup with optimistic case
-        // i.e. Everything fits. No button needed
-//        mButton.setVisibility(View.GONE);
         mExpandFootView.setVisibility(View.GONE);
         mTv.setMaxLines(Integer.MAX_VALUE);
 
@@ -263,8 +260,10 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     }
     
     
-    public void setConvertText(int position,String text) {
+    public void setConvertText(SparseBooleanArray convertStatus,int position,String text) {
+    	mConvertTextCollapsedStatus = convertStatus;
     	boolean isCollapsed = mConvertTextCollapsedStatus.get(position, true);
+    	Log.i(TAG, "setConvertText is collapsed " + isCollapsed + " position" + position + " this " + this);
     	mPosition = position;
     	clearAnimation();
     	mCollapsed = isCollapsed;
