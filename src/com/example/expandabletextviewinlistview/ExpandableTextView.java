@@ -109,7 +109,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if (mButton.getVisibility() != View.VISIBLE) {
+        if (mExpandFootView.getVisibility() != View.VISIBLE) {
             return;
         }
 
