@@ -44,8 +44,7 @@ import android.widget.TextView;
  */
 public class ExpandableTextView extends LinearLayout implements View.OnClickListener {
 
-	@SuppressWarnings("unused")
-	private static final String TAG = ExpandableTextView.class.getSimpleName();
+	private static final String TAG = "ExpandableTextView";
 
     // The default number of lines;
     private static final int MAX_COLLAPSED_LINES = 8;
@@ -138,7 +137,9 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
             public void onAnimationStart(Animation animation) {
             }
             @Override
-            public void onAnimationEnd(Animation animation) { }
+            public void onAnimationEnd(Animation animation) { 
+            	clearAnimation();
+            }
             @Override
             public void onAnimationRepeat(Animation animation) { }
         });
@@ -150,6 +151,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     @SuppressLint("DrawAllocation") @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     	
+    	Log.d(TAG, " onMeasure ");
         // If no change, measure and return
         if (!mRelayout || getVisibility() == View.GONE) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
